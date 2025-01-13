@@ -1,6 +1,7 @@
 package com.example.keisan.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,8 +44,9 @@ fun HomeScreen() {
             TopAppBar(
                 title = {
                     Text(
-                        text = "Keisan Calculator",
-                        style = MaterialTheme.typography.headlineMedium,
+                        text = "Keisan",
+                        fontSize = 30.sp,
+                        style = MaterialTheme.typography.headlineSmall,
                         color = Color.White
                     )
                 },
@@ -56,8 +59,8 @@ fun HomeScreen() {
                         contentDescription = "App Icon",
                         tint = Color.White,
                         modifier = Modifier
+                            .padding(start = 16.dp)
                             .size(45.dp)
-                            .fillMaxSize()
                     )
                 }
             )
@@ -65,16 +68,15 @@ fun HomeScreen() {
         content = {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxSize()
                     .padding(it)
                     .background(Color.White)
             ) {
-                // Display the result box
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 16.dp)
-                        .background(Color.Black, shape = MaterialTheme.shapes.medium)
+                        .weight(1f)
+                        .background(Color.Black)
                         .padding(24.dp)
                 ) {
                     Text(
@@ -82,168 +84,177 @@ fun HomeScreen() {
                         textAlign = TextAlign.End,
                         fontWeight = FontWeight.Bold,
                         fontSize = 72.sp,
-                        color = Color.White
+                        color = Color.White,
+                        modifier = Modifier.fillMaxSize()
                     )
                 }
 
-                // First row
-                Row(
-                    modifier = Modifier.fillMaxWidth()
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.Black),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    CalculatorButton(
-                        symbol = "AC",
-                        width = 135,
-                        height = 40,
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.padding(horizontal = 8.dp)
                     ) {
-                        viewModel.onAction(CalculatorAction.Clear)
+                        CalculatorButton(
+                            symbol = "AC",
+                            width = 135,
+                            height = 40,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Clear)
+                        }
+                        CalculatorButton(
+                            symbol = "/",
+                            width = 40,
+                            height = 40,
+                            isOperation = true,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Operation(CalculatorOperation.Divide))
+                        }
+                        CalculatorButton(
+                            symbol = "+",
+                            width = 40,
+                            height = 40,
+                            isOperation = true,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Operation(CalculatorOperation.Add))
+                        }
                     }
-                    CalculatorButton(
-                        symbol = "/",
-                        width = 40,
-                        height = 40,
-                        isOperation = true,
-                    ) {
-                        viewModel.onAction(CalculatorAction.Operation(CalculatorOperation.Divide))
-                    }
-                    CalculatorButton(
-                        symbol = "+",
-                        width = 40,
-                        height = 40,
-                        isOperation = true,
-                    ) {
-                        viewModel.onAction(CalculatorAction.Operation(CalculatorOperation.Add))
-                    }
-                }
 
-                // Second row
-                Row(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    CalculatorButton(
-                        symbol = "7",
-                        width = 40,
-                        height = 40,
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.padding(horizontal = 8.dp)
                     ) {
-                        viewModel.onAction(CalculatorAction.Number(7))
+                        CalculatorButton(
+                            symbol = "7",
+                            width = 40,
+                            height = 40,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Number(7))
+                        }
+                        CalculatorButton(
+                            symbol = "8",
+                            width = 40,
+                            height = 40,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Number(8))
+                        }
+                        CalculatorButton(
+                            symbol = "9",
+                            width = 40,
+                            height = 40,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Number(9))
+                        }
+                        CalculatorButton(
+                            symbol = "x",
+                            width = 40,
+                            height = 40,
+                            isOperation = true,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Operation(CalculatorOperation.Multiply))
+                        }
                     }
-                    CalculatorButton(
-                        symbol = "8",
-                        width = 40,
-                        height = 40,
-                    ) {
-                        viewModel.onAction(CalculatorAction.Number(8))
-                    }
-                    CalculatorButton(
-                        symbol = "9",
-                        width = 40,
-                        height = 40,
-                    ) {
-                        viewModel.onAction(CalculatorAction.Number(9))
-                    }
-                    CalculatorButton(
-                        symbol = "x",
-                        width = 40,
-                        height = 40,
-                        isOperation = true,
-                    ) {
-                        viewModel.onAction(CalculatorAction.Operation(CalculatorOperation.Multiply))
-                    }
-                }
 
-                // Third row
-                Row(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    CalculatorButton(
-                        symbol = "4",
-                        width = 40,
-                        height = 40,
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.padding(horizontal = 8.dp)
                     ) {
-                        viewModel.onAction(CalculatorAction.Number(4))
+                        CalculatorButton(
+                            symbol = "4",
+                            width = 40,
+                            height = 40,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Number(4))
+                        }
+                        CalculatorButton(
+                            symbol = "5",
+                            width = 40,
+                            height = 40,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Number(5))
+                        }
+                        CalculatorButton(
+                            symbol = "6",
+                            width = 40,
+                            height = 40,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Number(6))
+                        }
+                        CalculatorButton(
+                            symbol = "-",
+                            width = 40,
+                            height = 40,
+                            isOperation = true,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Operation(CalculatorOperation.Subtract))
+                        }
                     }
-                    CalculatorButton(
-                        symbol = "5",
-                        width = 40,
-                        height = 40,
-                    ) {
-                        viewModel.onAction(CalculatorAction.Number(5))
-                    }
-                    CalculatorButton(
-                        symbol = "6",
-                        width = 40,
-                        height = 40,
-                    ) {
-                        viewModel.onAction(CalculatorAction.Number(6))
-                    }
-                    CalculatorButton(
-                        symbol = "-",
-                        width = 40,
-                        height = 40,
-                        isOperation = true,
-                    ) {
-                        viewModel.onAction(CalculatorAction.Operation(CalculatorOperation.Subtract))
-                    }
-                }
 
-                // Fourth row
-                Row(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    CalculatorButton(
-                        symbol = "1",
-                        width = 40,
-                        height = 40,
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.padding(horizontal = 8.dp)
                     ) {
-                        viewModel.onAction(CalculatorAction.Number(1))
+                        CalculatorButton(
+                            symbol = "1",
+                            width = 40,
+                            height = 40,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Number(1))
+                        }
+                        CalculatorButton(
+                            symbol = "2",
+                            width = 40,
+                            height = 40,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Number(2))
+                        }
+                        CalculatorButton(
+                            symbol = "3",
+                            width = 40,
+                            height = 40,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Number(3))
+                        }
+                        CalculatorButton(
+                            symbol = "=",
+                            width = 40,
+                            height = 40,
+                            isOperation = true,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Calculate)
+                        }
                     }
-                    CalculatorButton(
-                        symbol = "2",
-                        width = 40,
-                        height = 40,
-                    ) {
-                        viewModel.onAction(CalculatorAction.Number(2))
-                    }
-                    CalculatorButton(
-                        symbol = "3",
-                        width = 40,
-                        height = 40,
-                    ) {
-                        viewModel.onAction(CalculatorAction.Number(3))
-                    }
-                    CalculatorButton(
-                        symbol = "=",
-                        width = 40,
-                        height = 40,
-                        isOperation = true,
-                    ) {
-                        viewModel.onAction(CalculatorAction.Calculate)
-                    }
-                }
 
-                // Fifth row
-                Row(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    CalculatorButton(
-                        symbol = "0",
-                        width = 40,
-                        height = 40,
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.padding(horizontal = 8.dp)
                     ) {
-                        viewModel.onAction(CalculatorAction.Number(0))
-                    }
-                    CalculatorButton(
-                        symbol = ".",
-                        width = 40,
-                        height = 40,
-                    ) {
-                        viewModel.onAction(CalculatorAction.Decimal)
-                    }
-                    CalculatorButton(
-                        symbol = "Del",
-                        width = 135,
-                        height = 40,
-                    ) {
-                        viewModel.onAction(CalculatorAction.Delete)
+                        CalculatorButton(
+                            symbol = "0",
+                            width = 40,
+                            height = 40,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Number(0))
+                        }
+                        CalculatorButton(
+                            symbol = ".",
+                            width = 40,
+                            height = 40,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Decimal)
+                        }
+                        CalculatorButton(
+                            symbol = "Del",
+                            width = 135,
+                            height = 40,
+                        ) {
+                            viewModel.onAction(CalculatorAction.Delete)
+                        }
                     }
                 }
             }
