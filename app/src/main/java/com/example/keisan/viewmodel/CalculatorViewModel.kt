@@ -1,5 +1,6 @@
 package com.example.keisan.viewmodel
 
+import android.annotation.SuppressLint
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -12,7 +13,7 @@ class CalculatorViewModel : ViewModel() {
     var state by mutableStateOf(CalculatorState())
 
     companion object {
-        private const val MAX_NUM_LENGTH = 8
+        private const val MAX_NUM_LENGTH = 15
     }
 
     private fun enterNumber(number: Int) {
@@ -47,6 +48,9 @@ class CalculatorViewModel : ViewModel() {
     }
 
     private fun enterOperation(operation: CalculatorOperation) {
+        if (state.number1.isNotBlank() && state.number2.isNotBlank()) {
+            calculate()
+        }
         if (state.number1.isNotBlank()) {
             state = state.copy(operation = operation)
         }
@@ -68,6 +72,7 @@ class CalculatorViewModel : ViewModel() {
         }
     }
 
+    @SuppressLint("DefaultLocale")
     private fun calculate() {
         val number1 = state.number1.toDoubleOrNull()
         val number2 = state.number2.toDoubleOrNull()
@@ -79,8 +84,15 @@ class CalculatorViewModel : ViewModel() {
                 is CalculatorOperation.Divide -> number1 / number2
                 null -> return
             }
+
+            val formattedResult = if (result % 1 == 0.0) {
+                result.toInt().toString()
+            } else {
+                String.format("%.3f", result)
+            }
+
             state = state.copy(
-                number1 = result.toString().take(15),
+                number1 = formattedResult.take(15),
                 number2 = "",
                 operation = null
             )

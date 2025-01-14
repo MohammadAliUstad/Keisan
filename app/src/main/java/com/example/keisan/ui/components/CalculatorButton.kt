@@ -8,10 +8,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Backspace
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.DensityMedium
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.ripple.rememberRipple
@@ -41,11 +41,11 @@ fun CalculatorButton(
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
-            .clip(CircleShape)  // Move clip before clickable
+            .clip(CircleShape)
             .background(Color(0xFF2D2D2D), shape = CircleShape)
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
-                indication = rememberRipple(bounded = true), // Add ripple indication
+                indication = rememberRipple(bounded = true),
                 onClick = onClick
             )
             .padding(20.dp)
@@ -56,9 +56,9 @@ fun CalculatorButton(
                 "+" -> Icons.Filled.Add
                 "-" -> Icons.Filled.Remove
                 "x" -> Icons.Filled.Close
-                "/" -> Icons.Filled.DensityMedium
                 "=" -> Icons.Filled.Done
                 "AC" -> Icons.Filled.Clear
+                "Del" -> Icons.AutoMirrored.Filled.Backspace
                 else -> null
             }
             icon?.let {
