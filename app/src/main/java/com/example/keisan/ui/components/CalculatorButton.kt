@@ -1,6 +1,5 @@
 package com.example.keisan.ui.components
 
-
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

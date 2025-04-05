@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Calculate
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.OpenInBrowser
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -48,7 +48,7 @@ fun AboutScreen(navController: NavController) {
             TopAppBar(
                 title = {
                     Text(
-                        text = "About Keisan",
+                        text = "About",
                         style = MaterialTheme.typography.headlineSmall,
                         color = MaterialTheme.colorScheme.onSurface,
                         fontWeight = FontWeight.Bold
@@ -76,7 +76,7 @@ fun AboutScreen(navController: NavController) {
                 verticalArrangement = Arrangement.Top
             ) {
                 Icon(
-                    imageVector = Icons.Default.Calculate,
+                    imageVector = Icons.Default.AutoAwesome,
                     contentDescription = "App Logo",
                     modifier = Modifier
                         .size(100.dp)

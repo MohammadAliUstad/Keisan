@@ -42,7 +42,6 @@ fun KeisanTheme(
     }
 
     val systemUiController = rememberSystemUiController()
-
     SideEffect {
         systemUiController.setNavigationBarColor(
             color = Color.Black,
