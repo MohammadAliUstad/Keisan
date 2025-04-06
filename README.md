@@ -35,15 +35,9 @@ Welcome to **Keisan**, a modern and lightweight calculator built for everyday us
 
 <div align="center">
   
-<img src="Screenshots/IMG_0328.JPG" width="30%"/>
-<img src="Screenshots/IMG_0329.JPG" width="30%"/>
-<img src="Screenshots/IMG_0348.JPG" width="30%"/>
-
-<br/><br/>
-
-<img src="Screenshots/IMG_0349.JPG" width="30%"/>
-<img src="Screenshots/IMG_0350.JPG" width="30%"/>
-<img src="Screenshots/IMG_0351.JPG" width="30%"/>
+<img src="Screenshots/IMG_0339.JPG" width="30%"/>
+<img src="Screenshots/IMG_0341.JPG" width="30%"/>
+<img src="Screenshots/IMG_0343.JPG" width="30%"/>
 
 </div>
 
